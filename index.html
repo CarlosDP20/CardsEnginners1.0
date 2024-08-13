@@ -15,7 +15,6 @@
     <header class="header-centrado">
         <img src="MTSolutions_cp_cmyk.png" alt="MTSolutions Logo" class="logo" />
         <h1>MTSolutions - Gestión de Habilidades</h1>
-        <h2>Mesa de Servicio</h2>
     </header>
     <main>
         <button id="showFormBtn">Crear nueva tarjeta</button>
@@ -35,14 +34,7 @@
                 <button type="submit">Crear tarjeta</button>
             </form>
         </div>
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Buscar..." />
-            <select id="searchCriteria">
-                <option value="skill">Buscar por habilidad</option>
-                <option value="name">Buscar por nombre</option>
-            </select>
-            <button id="searchBtn">Buscar</button>
-        </div>
+        <input type="text" id="searchInput" placeholder="Buscar habilidad..." />
         <div id="cardsContainer"></div>
         <button id="saveJsonBtn">Guardar tarjetas en JSON</button>
         <button id="importJsonBtn">Importar tarjetas desde JSON</button>
