@@ -3,62 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asimetrixtech - Buscador de Especialistas</title>
+    <title>AsimetrixTech - Buscador de Ingenieros</title>
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header Personalizado -->
     <header class="header">
         <nav class="navbar">
             <div class="nav-container">
                 <div class="logo">
-                    <i class="fas fa-code"></i>
-                    <span>Asimetrixtech</span>
+                    <i class="fas fa-headset"></i>
+                    <span>AsimetrixTech - Mesa de Servicio</span>
                 </div>
-                <div class="nav-links">
-                    <a href="#inicio" class="nav-link">Inicio</a>
-                    <a href="#buscar" class="nav-link">Buscar</a>
-                    <a href="#equipo" class="nav-link">Equipo</a>
-                    <a href="#contacto" class="nav-link">Contacto</a>
+                <div class="nav-info">
+                    <span class="nav-tag">Buscador Interno</span>
+                    <span class="nav-tag">Asignación Rápida</span>
                 </div>
             </div>
         </nav>
     </header>
 
     <!-- Hero Section -->
-    <section id="inicio" class="hero">
+    <section class="hero">
         <div class="hero-content">
-            <h1 class="hero-title">Ingenieros</h1>
-            <p class="hero-subtitle">Busca la especialidad que requiere el caso</p>
+            <h1 class="hero-title">Asignación Rápida de Casos</h1>
+            <p class="hero-subtitle">Busca ingenieros por especialidad técnica para asignación inmediata</p>
             <div class="search-box-hero">
-                <input type="text" id="searchInputHero" placeholder="Ej: Azure, Java, React, Python...">
+                <input type="text" id="searchInputHero" placeholder="Ej: Azure, Java, React, Python, SAP...">
                 <button onclick="searchFromHero()">
-                    <i class="fas fa-search"></i>
+                    <i class="fas fa-search"></i> Buscar Especialista
                 </button>
             </div>
         </div>
     </section>
 
     <!-- Buscador Principal -->
-    <section id="buscar" class="search-section">
+    <section class="search-section">
         <div class="container">
-            <h2>Buscar por Especialidad</h2>
+            <h2><i class="fas fa-filter"></i> Filtrar por Tecnología</h2>
             <div class="search-container">
                 <div class="search-box">
                     <i class="fas fa-search"></i>
-                    <input type="text" id="searchInput" placeholder="Escribe una tecnología o especialidad...">
-                    <button onclick="searchEngineers()">Buscar</button>
+                    <input type="text" id="searchInput" placeholder="Tecnología, plataforma o especialidad...">
+                    <button onclick="searchEngineers()">
+                        <i class="fas fa-bolt"></i> Buscar
+                    </button>
                 </div>
                 
                 <!-- Filtros rápidos -->
                 <div class="quick-filters">
-                    <span>Filtros rápidos:</span>
-                    <button class="filter-btn" onclick="filterByTech('Azure')">Azure</button>
-                    <button class="filter-btn" onclick="filterByTech('Java')">Java</button>
-                    <button class="filter-btn" onclick="filterByTech('Python')">Python</button>
-                    <button class="filter-btn" onclick="filterByTech('React')">React</button>
-                    <button class="filter-btn" onclick="filterByTech('AWS')">AWS</button>
+                    <span>Tecnologías comunes:</span>
+                    <button class="filter-btn" onclick="filterByTech('Azure')">
+                        <i class="fab fa-microsoft"></i> Azure
+                    </button>
+                    <button class="filter-btn" onclick="filterByTech('AWS')">
+                        <i class="fab fa-aws"></i> AWS
+                    </button>
+                    <button class="filter-btn" onclick="filterByTech('Java')">
+                        <i class="fab fa-java"></i> Java
+                    </button>
+                    <button class="filter-btn" onclick="filterByTech('Python')">
+                        <i class="fab fa-python"></i> Python
+                    </button>
+                    <button class="filter-btn" onclick="filterByTech('React')">
+                        <i class="fab fa-react"></i> React
+                    </button>
+                    <button class="filter-btn" onclick="filterByTech('SAP')">
+                        <i class="fas fa-database"></i> SAP
+                    </button>
                 </div>
             </div>
         </div>
@@ -77,7 +90,8 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 TechEngineers. Todos los derechos reservados.</p>
+            <p><i class="fas fa-shield-alt"></i> AsimetrixTech - Mesa de Servicio Interno</p>
+            <p class="footer-sub">Sistema de asignación rápida de casos técnicos</p>
         </div>
     </footer>
 

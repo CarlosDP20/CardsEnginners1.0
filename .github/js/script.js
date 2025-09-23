@@ -1,5 +1,4 @@
 // Base de datos de ingenieros
-// Base de datos de ingenieros ACTUALIZADA
 const engineers = [
     {
         id: 1,
@@ -74,7 +73,6 @@ function searchFromHero() {
     document.getElementById('searchInput').value = searchTerm;
     performSearch(searchTerm);
     
-    // Scroll to results
     document.getElementById('buscar').scrollIntoView({ behavior: 'smooth' });
 }
 
@@ -130,7 +128,7 @@ function displayResults(filteredEngineers, searchTerm) {
     }
 }
 
-// Crear tarjeta de ingeniero ACTUALIZADA
+// FUNCIÓN PRINCIPAL - WHATSAPP DIRECTO (SIN PROMPT)
 function createEngineerCard(engineer, searchTerm = '') {
     const card = document.createElement('div');
     card.className = 'engineer-card';
@@ -139,6 +137,12 @@ function createEngineerCard(engineer, searchTerm = '') {
         const isHighlighted = searchTerm && specialty.toLowerCase().includes(searchTerm);
         return `<span class="specialty-tag ${isHighlighted ? 'highlight' : ''}">${specialty}</span>`;
     }).join('');
+
+    // Limpiar el número para WhatsApp
+    const cleanPhone = engineer.phone.replace(/\s+/g, '').replace('+', '');
+
+    // Mensaje predeterminado
+    const defaultMessage = `Saludos Ing ${engineer.name}. Se le procederá asignar un caso, por favor contactarse con el cliente en la menor brevedad posible.`;
 
     card.innerHTML = `
         <div class="engineer-header">
@@ -167,11 +171,14 @@ function createEngineerCard(engineer, searchTerm = '') {
                 </a>
             </div>
             <div class="contact-actions">
+                <button class="contact-btn whatsapp" onclick="openWhatsApp('${cleanPhone}', '${defaultMessage}')">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </button>
                 <button class="contact-btn copy" onclick="copyToClipboard('${engineer.email}', this)">
-                    <i class="fas fa-copy"></i> Copiar Email
+                    <i class="fas fa-copy"></i> Email
                 </button>
                 <button class="contact-btn copy" onclick="copyToClipboard('${engineer.phone}', this)">
-                    <i class="fas fa-copy"></i> Copiar Teléfono
+                    <i class="fas fa-copy"></i> Teléfono
                 </button>
             </div>
         </div>
@@ -180,10 +187,15 @@ function createEngineerCard(engineer, searchTerm = '') {
     return card;
 }
 
+// Función para abrir WhatsApp DIRECTO (sin prompt)
+function openWhatsApp(phone, message) {
+    const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+}
+
 // Función para copiar al portapapeles
 function copyToClipboard(text, button) {
     navigator.clipboard.writeText(text).then(() => {
-        // Efecto visual de copiado
         button.classList.add('active');
         setTimeout(() => {
             button.classList.remove('active');
@@ -228,7 +240,7 @@ document.getElementById('searchInputHero').addEventListener('keypress', function
     }
 });
 
-// Inicializar la página mostrando todos los ingenieros
+// Inicializar la página
 document.addEventListener('DOMContentLoaded', function() {
     displayAllEngineers();
 });
