@@ -1,64 +1,70 @@
-// Base de datos de ingenieros
+// Base de datos de ingenieros ACTUALIZADA con campo de guardia
 const engineers = [
     {
         id: 1,
         name: "María Ruiz",
         title: "Consultor de servicios",
-        specialties: ["Azure", "Windows Server"],
+        specialties: ["Azure", "Windows Server", "Monitoreo"],
         experience: "- años",
         avatar: "MR",
         email: "maria.ruiz@asimetrixtech.com",
-        phone: "+584127369627"
+        phone: "+584127369627",
+        onDuty: true  // ✅ Está de guardia
     },
     {
         id: 2,
-        name: "Carlos Rodríguez",
-        title: "Infrastructure Specialist",
-        specialties: ["Windows Server", "Switches Aruba y HPE", "Linux", "Impresoras HP"],
-        experience: "6 años",
-        avatar: "CR",
-        email: "carlos.rodriguez@asimetrixtech.com",
-        phone: "+34 623 456 789"
+        name: "Harry Jaspe",
+        title: "Consultor sistemas operativos",
+        specialties: ["Linux", "Monitoreo", "Unix"],
+        experience: "- años",
+        avatar: "HJ",
+        email: "harry.jaspe@asimetrixtech.com",
+        phone: "+584142600567",
+        onDuty: false 
     },
     {
         id: 3,
-        name: "Ana Martínez",
-        title: "Network Engineer",
-        specialties: ["Switches Aruba y HPE", "Windows Server", "Servidores HPE", "AWS"],
-        experience: "7 años",
-        avatar: "AM",
-        email: "ana.martinez@asimetrixtech.com",
-        phone: "+34 634 567 890"
+        name: "Abraham González",
+        title: "Ingeniero de campo",
+        specialties: ["Almacenamiento HPE", "Servidores proliant BL/ML/DL"],
+        experience: "- años",
+        avatar: "AG",
+        email: "abraham.gonzalez@asimetrixtech.com",
+        phone: "04241572543",
+        onDuty: true
     },
     {
         id: 4,
-        name: "David López",
-        title: "Systems Administrator",
-        specialties: ["Linux", "Windows Server", "Laptop", "Impresoras HP"],
-        experience: "5 años",
-        avatar: "DL",
-        email: "david.lopez@asimetrixtech.com",
-        phone: "+34 645 678 901"
+        name: "Dionis Hernandez",
+        title: "Consultor sistemas operativos",
+        specialties: ["AWS", "Linux"],
+        experience: "- años",
+        avatar: "DH",
+        email: "dionis.hernandez@asimetrixtech.com",
+        phone: "+584123780090",
+        onDuty: false 
     },
     {
         id: 5,
-        name: "Elena Sánchez",
-        title: "Cloud Architect",
-        specialties: ["Azure", "AWS", "Linux", "Servidores HPE"],
+        name: "Jorge Frias",
+        title: "Ingeniero de campo",
+        specialties: ["Almacenamiento HPE", "Servidores proliant BL/ML/DL"],
         experience: "9 años",
         avatar: "ES",
-        email: "elena.sanchez@asimetrixtech.com",
-        phone: "+34 656 789 012"
+        email: "jorge.frias@asimetrixtech.com",
+        phone: "+584122912198",
+        onDuty: false 
     },
     {
         id: 6,
-        name: "Pablo Fernández",
-        title: "Help Desk Specialist",
-        specialties: ["Laptop", "Impresoras HP", "Windows Server", "Linux"],
-        experience: "6 años",
-        avatar: "PF",
-        email: "pablo.fernandez@asimetrixtech.com",
-        phone: "+34 667 890 123"
+        name: "Freddy Serrano",
+        title: "Ingeniero de campo",
+        specialties: ["B&R Baas", "Veeam backup", "Data protector"],
+        experience: "- años",
+        avatar: "FS",
+        email: "freddy.serrano@asimetrixtech.com",
+        phone: "+584127335114",
+        onDuty: false 
     }
 ];
 
@@ -128,10 +134,15 @@ function displayResults(filteredEngineers, searchTerm) {
     }
 }
 
-// FUNCIÓN PRINCIPAL - WHATSAPP DIRECTO (SIN PROMPT)
+// FUNCIÓN PRINCIPAL ACTUALIZADA con indicador de guardia
 function createEngineerCard(engineer, searchTerm = '') {
     const card = document.createElement('div');
     card.className = 'engineer-card';
+    
+    // Agregar clase si está de guardia
+    if (engineer.onDuty) {
+        card.classList.add('on-duty');
+    }
 
     const specialtiesHTML = engineer.specialties.map(specialty => {
         const isHighlighted = searchTerm && specialty.toLowerCase().includes(searchTerm);
@@ -141,8 +152,19 @@ function createEngineerCard(engineer, searchTerm = '') {
     // Limpiar el número para WhatsApp
     const cleanPhone = engineer.phone.replace(/\s+/g, '').replace('+', '');
 
-    // Mensaje predeterminado
-    const defaultMessage = `Saludos Ing ${engineer.name}. Se le procederá asignar un caso, por favor contactarse con el cliente en la menor brevedad posible.`;
+    // Mensaje predeterminado - diferente si está de guardia
+    let defaultMessage;
+    if (engineer.onDuty) {
+        defaultMessage = `Hola ${engineer.name}, tengo un caso urgente que requiere tu atención inmediata. Vi que estás de guardia activa en AsimetrixTech.`;
+    } else {
+        defaultMessage = `Hola ${engineer.name}, me interesa contactarte por tus servicios de ingeniería. Vi tu perfil en AsimetrixTech.`;
+    }
+
+    // Indicador de guardia (solo se muestra si onDuty es true)
+    const dutyIndicator = engineer.onDuty ? 
+        `<div class="duty-indicator">
+            <i class="fas fa-shield-alt"></i> EN GUARDIA ACTIVA
+        </div>` : '';
 
     card.innerHTML = `
         <div class="engineer-header">
@@ -151,6 +173,7 @@ function createEngineerCard(engineer, searchTerm = '') {
                 <h3>${engineer.name}</h3>
                 <div class="engineer-title">${engineer.title}</div>
                 <div class="engineer-experience">Experiencia: ${engineer.experience}</div>
+                ${dutyIndicator}
             </div>
         </div>
         <div class="specialties">

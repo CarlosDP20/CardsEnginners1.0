@@ -518,3 +518,51 @@ body {
         min-width: 100%;
     }
 }
+/* Indicador de Guardia */
+.duty-indicator {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-top: 0.5rem;
+    animation: pulse-gold 2s infinite;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+}
+
+.duty-indicator i {
+    font-size: 0.7rem;
+}
+
+@keyframes pulse-gold {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Efecto de brillo para las tarjetas con guardia */
+.engineer-card.on-duty {
+    border-left: 4px solid #f59e0b;
+    position: relative;
+    overflow: hidden;
+}
+
+.engineer-card.on-duty::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #f59e0b, #fbbf24, #f59e0b);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
