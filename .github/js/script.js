@@ -1,4 +1,5 @@
 // Base de datos de ingenieros
+// Base de datos de ingenieros ACTUALIZADA
 const engineers = [
     {
         id: 1,
@@ -6,7 +7,9 @@ const engineers = [
         title: "Senior Cloud Engineer",
         specialties: ["Azure", "AWS", "DevOps", "Kubernetes", "Docker"],
         experience: "8 años",
-        avatar: "MG"
+        avatar: "MG",
+        email: "maria.gonzalez@techengineers.com",
+        phone: "+34 612 345 678"
     },
     {
         id: 2,
@@ -14,7 +17,9 @@ const engineers = [
         title: "Full Stack Developer",
         specialties: ["Java", "Spring Boot", "React", "PostgreSQL", "Azure"],
         experience: "6 años",
-        avatar: "CR"
+        avatar: "CR",
+        email: "carlos.rodriguez@techengineers.com",
+        phone: "+34 623 456 789"
     },
     {
         id: 3,
@@ -22,7 +27,9 @@ const engineers = [
         title: "Data Engineer",
         specialties: ["Python", "Azure Data Factory", "SQL", "Spark", "Power BI"],
         experience: "7 años",
-        avatar: "AM"
+        avatar: "AM",
+        email: "ana.martinez@techengineers.com",
+        phone: "+34 634 567 890"
     },
     {
         id: 4,
@@ -30,7 +37,9 @@ const engineers = [
         title: "Backend Specialist",
         specialties: ["Java", "Microservices", "Azure", "MongoDB", "Redis"],
         experience: "5 años",
-        avatar: "DL"
+        avatar: "DL",
+        email: "david.lopez@techengineers.com",
+        phone: "+34 645 678 901"
     },
     {
         id: 5,
@@ -38,7 +47,9 @@ const engineers = [
         title: "Frontend Architect",
         specialties: ["React", "TypeScript", "Azure Static Apps", "CSS", "Jest"],
         experience: "9 años",
-        avatar: "ES"
+        avatar: "ES",
+        email: "elena.sanchez@techengineers.com",
+        phone: "+34 656 789 012"
     },
     {
         id: 6,
@@ -46,7 +57,9 @@ const engineers = [
         title: "DevOps Engineer",
         specialties: ["Azure DevOps", "Terraform", "Python", "Linux", "CI/CD"],
         experience: "6 años",
-        avatar: "PF"
+        avatar: "PF",
+        email: "pablo.fernandez@techengineers.com",
+        phone: "+34 667 890 123"
     }
 ];
 
@@ -117,7 +130,7 @@ function displayResults(filteredEngineers, searchTerm) {
     }
 }
 
-// Crear tarjeta de ingeniero
+// Crear tarjeta de ingeniero ACTUALIZADA
 function createEngineerCard(engineer, searchTerm = '') {
     const card = document.createElement('div');
     card.className = 'engineer-card';
@@ -142,9 +155,54 @@ function createEngineerCard(engineer, searchTerm = '') {
                 ${specialtiesHTML}
             </div>
         </div>
+        <div class="engineer-contact">
+            <div class="contact-info">
+                <a href="mailto:${engineer.email}" class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>${engineer.email}</span>
+                </a>
+                <a href="tel:${engineer.phone}" class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>${engineer.phone}</span>
+                </a>
+            </div>
+            <div class="contact-actions">
+                <button class="contact-btn copy" onclick="copyToClipboard('${engineer.email}', this)">
+                    <i class="fas fa-copy"></i> Copiar Email
+                </button>
+                <button class="contact-btn copy" onclick="copyToClipboard('${engineer.phone}', this)">
+                    <i class="fas fa-copy"></i> Copiar Teléfono
+                </button>
+            </div>
+        </div>
     `;
 
     return card;
+}
+
+// Función para copiar al portapapeles
+function copyToClipboard(text, button) {
+    navigator.clipboard.writeText(text).then(() => {
+        // Efecto visual de copiado
+        button.classList.add('active');
+        setTimeout(() => {
+            button.classList.remove('active');
+        }, 2000);
+    }).catch(err => {
+        console.error('Error al copiar: ', err);
+        // Fallback para navegadores antiguos
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        
+        button.classList.add('active');
+        setTimeout(() => {
+            button.classList.remove('active');
+        }, 2000);
+    });
 }
 
 // Búsqueda en tiempo real

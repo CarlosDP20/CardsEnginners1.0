@@ -353,3 +353,96 @@ body {
         gap: 1rem;
     }
 }
+/* Estilos para la información de contacto */
+.engineer-contact {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contact-item:hover {
+    color: var(--primary-color);
+}
+
+.contact-item i {
+    width: 20px;
+    color: var(--primary-color);
+}
+
+.contact-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.contact-btn {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid var(--primary-color);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+}
+
+.contact-btn:hover {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+.contact-btn.copy {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+.contact-btn.copy:hover {
+    background: var(--accent-color);
+    color: var(--white);
+}
+
+/* Tooltip para copiar */
+.tooltip {
+    position: relative;
+}
+
+.tooltip::after {
+    content: 'Copiado!';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--text-dark);
+    color: var(--white);
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+.tooltip.active::after {
+    opacity: 1;
+}
