@@ -24,6 +24,8 @@
         </nav>
     </header>
 
+    <!-- Agregar esto en el head -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
@@ -52,6 +54,35 @@
                 </div>
                 
                 <!-- Filtros rápidos -->
+
+  
+
+   <!-- Reemplazar los botones de reporte por esto -->
+<div class="reports-dropdown">
+    <button class="dropdown-btn">
+        <i class="fas fa-download"></i> Descargar Reportes
+    </button>
+    <div class="dropdown-content">
+        <a href="#" onclick="downloadReport('all')">
+            <i class="fas fa-users"></i> Todos los Ingenieros
+        </a>
+        <a href="#" onclick="downloadReport('guardia')">
+            <i class="fas fa-shield-alt"></i> Ingenieros de Guardia
+        </a>
+        <a href="#" onclick="downloadReport('technology', 'Azure')">
+            <i class="fab fa-microsoft"></i> Especialistas Azure
+        </a>
+        <a href="#" onclick="downloadReport('technology', 'Linux')">
+            <i class="fab fa-linux"></i> Especialistas Linux
+        </a>
+        <a href="#" onclick="downloadReport('technology', 'AWS')">
+            <i class="fab fa-aws"></i> Especialistas AWS
+        </a>
+        <a href="#" onclick="downloadReport('cases')">
+            <i class="fas fa-tasks"></i> Historial de Casos
+        </a>
+    </div>
+</div>
                 
 <div class="quick-filters">
     <span>Tecnologías comunes:</span>
@@ -81,7 +112,70 @@
     </button>
         </div>
     </section>
+<!-- Reemplazar toda la sección de casos por esto: -->
+<section class="cases-section">
+    <div class="container">
+        <!-- Botón para mostrar/ocultar el sistema de casos -->
+        <div class="cases-toggle">
+            <button class="toggle-cases-btn" onclick="toggleCasesSection()">
+                <i class="fas fa-tasks"></i> 
+                <span id="casesToggleText">Mostrar Sistema de Casos</span>
+                <i class="fas fa-chevron-down" id="casesToggleIcon"></i>
+            </button>
+        </div>
 
+        <!-- Contenedor que se mostrará/ocultará -->
+        <div id="casesContainer" class="cases-container" style="display: none;">
+            <h2><i class="fas fa-tasks"></i> Registro de Casos Resueltos</h2>
+            
+            <div class="case-form">
+                <div class="form-group">
+                    <label>Ingeniero:</label>
+                    <select id="engineerSelect">
+                        <option value="">Seleccionar ingeniero...</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Número de Caso:</label>
+                    <input type="text" id="caseNumber" placeholder="Ej: CASO-001">
+                </div>
+                
+                <div class="form-group">
+                    <label>Descripción:</label>
+                    <textarea id="caseDescription" placeholder="Descripción del caso resuelto..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Tecnología utilizada:</label>
+                    <input type="text" id="caseTechnology" placeholder="Ej: Azure, Linux, etc.">
+                </div>
+                
+                <button class="submit-case" onclick="addCase()">
+                    <i class="fas fa-save"></i> Registrar Caso
+                </button>
+            </div>
+
+            <div class="cases-history">
+                <h3>Historial de Casos</h3>
+                <div class="cases-actions">
+                    <button class="report-btn" onclick="downloadCasesReport()">
+                        <i class="fas fa-file-excel"></i> Descargar Reporte de Casos
+                    </button>
+                    <button class="report-btn" onclick="downloadAdvancedCasesReport()">
+                        <i class="fas fa-chart-bar"></i> Reporte con Gráficos
+                    </button>
+                    <button class="report-btn" onclick="clearAllCases()">
+                        <i class="fas fa-trash"></i> Limpiar Historial
+                    </button>
+                </div>
+                <div id="casesList" class="cases-list">
+                    <!-- Los casos se cargarán aquí -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
     <!-- Resultados -->
     <section class="results-section">
         <div class="container">
