@@ -2,62 +2,62 @@
 const engineers = [
     {
         id: 1,
-        name: "María González",
-        title: "Senior Cloud Engineer",
-        specialties: ["Azure", "AWS", "DevOps", "Kubernetes", "Docker"],
-        experience: "8 años",
-        avatar: "MG",
-        email: "maria.gonzalez@techengineers.com",
-        phone: "+34 612 345 678"
+        name: "María Ruiz",
+        title: "Consultor de servicios",
+        specialties: ["Azure", "Windows Server"],
+        experience: "- años",
+        avatar: "MR",
+        email: "maria.ruiz@asimetrixtech.com",
+        phone: "+584127369627"
     },
     {
         id: 2,
         name: "Carlos Rodríguez",
-        title: "Full Stack Developer",
-        specialties: ["Java", "Spring Boot", "React", "PostgreSQL", "Azure"],
+        title: "Infrastructure Specialist",
+        specialties: ["Windows Server", "Switches Aruba y HPE", "Linux", "Impresoras HP"],
         experience: "6 años",
         avatar: "CR",
-        email: "carlos.rodriguez@techengineers.com",
+        email: "carlos.rodriguez@asimetrixtech.com",
         phone: "+34 623 456 789"
     },
     {
         id: 3,
         name: "Ana Martínez",
-        title: "Data Engineer",
-        specialties: ["Python", "Azure Data Factory", "SQL", "Spark", "Power BI"],
+        title: "Network Engineer",
+        specialties: ["Switches Aruba y HPE", "Windows Server", "Servidores HPE", "AWS"],
         experience: "7 años",
         avatar: "AM",
-        email: "ana.martinez@techengineers.com",
+        email: "ana.martinez@asimetrixtech.com",
         phone: "+34 634 567 890"
     },
     {
         id: 4,
         name: "David López",
-        title: "Backend Specialist",
-        specialties: ["Java", "Microservices", "Azure", "MongoDB", "Redis"],
+        title: "Systems Administrator",
+        specialties: ["Linux", "Windows Server", "Laptop", "Impresoras HP"],
         experience: "5 años",
         avatar: "DL",
-        email: "david.lopez@techengineers.com",
+        email: "david.lopez@asimetrixtech.com",
         phone: "+34 645 678 901"
     },
     {
         id: 5,
         name: "Elena Sánchez",
-        title: "Frontend Architect",
-        specialties: ["React", "TypeScript", "Azure Static Apps", "CSS", "Jest"],
+        title: "Cloud Architect",
+        specialties: ["Azure", "AWS", "Linux", "Servidores HPE"],
         experience: "9 años",
         avatar: "ES",
-        email: "elena.sanchez@techengineers.com",
+        email: "elena.sanchez@asimetrixtech.com",
         phone: "+34 656 789 012"
     },
     {
         id: 6,
         name: "Pablo Fernández",
-        title: "DevOps Engineer",
-        specialties: ["Azure DevOps", "Terraform", "Python", "Linux", "CI/CD"],
+        title: "Help Desk Specialist",
+        specialties: ["Laptop", "Impresoras HP", "Windows Server", "Linux"],
         experience: "6 años",
         avatar: "PF",
-        email: "pablo.fernandez@techengineers.com",
+        email: "pablo.fernandez@asimetrixtech.com",
         phone: "+34 667 890 123"
     }
 ];
