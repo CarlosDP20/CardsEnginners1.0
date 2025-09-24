@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AsimetrixTech - Buscador de Ingenieros</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <i class="fas fa-headset"></i>
+                    <span>AsimetrixTech - Mesa de Servicio</span>
+                </div>
+                <div class="nav-info">
+                    <span class="nav-tag">Buscador Interno</span>
+                    <span class="nav-tag">Asignación Rápida</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Asignación Rápida de Casos</h1>
+            <p class="hero-subtitle">Busca ingenieros por especialidad técnica para asignación inmediata</p>
+            <div class="search-box-hero">
+                <input type="text" id="searchInputHero" placeholder="Ej: Azure, Linux, Windows Server, HPE...">
+                <button onclick="searchFromHero()">
+                    <i class="fas fa-search"></i> Buscar Especialista
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Buscador Principal -->
+    <section class="search-section">
+        <div class="container">
+            <h2><i class="fas fa-filter"></i> Filtrar por Tecnología</h2>
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Tecnología, plataforma o especialidad...">
+                    <button onclick="searchEngineers()">
+                        <i class="fas fa-bolt"></i> Buscar
+                    </button>
+                </div>
+                
+                <!-- Filtros rápidos -->
+                <div class="quick-filters">
+                    <span>Tecnologías comunes:</span>
+                    <button class="filter-btn" onclick="filterByTech('Azure')">
+                        <i class="fab fa-microsoft"></i> Azure
+                    </button>
+                    <button class="filter-btn" onclick="filterByTech('Linux')">
+                        <i class="fab fa-linux"></i> Linux
+                    </button>
+                    <button class="filter-btn" onclick="filterByTech('Windows Server')">
+                        <i class="fab fa-windows"></i> Windows Server
+                    </button>
+                    <button class="filter-btn" onclick="filterByTech('HPE')">
+                        <i class="fas fa-server"></i> HPE
+                    </button>
+                    <button class="filter-btn" onclick="filterByTech('AWS')">
+                        <i class="fab fa-aws"></i> AWS
+                    </button>
+                </div>
+
+                <!-- Reportes desplegables -->
+                <div class="reports-section">
+                    <div class="reports-dropdown">
+                        <button class="dropdown-btn">
+                            <i class="fas fa-download"></i> Descargar Reportes
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="#" onclick="downloadReport('all')">
+                                <i class="fas fa-users"></i> Todos los Ingenieros
+                            </a>
+                            <a href="#" onclick="downloadReport('guardia')">
+                                <i class="fas fa-shield-alt"></i> Ingenieros de Guardia
+                            </a>
+                            <a href="#" onclick="downloadReport('technology', 'Azure')">
+                                <i class="fab fa-microsoft"></i> Especialistas Azure
+                            </a>
+                            <a href="#" onclick="downloadReport('technology', 'Linux')">
+                                <i class="fab fa-linux"></i> Especialistas Linux
+                            </a>
+                            <a href="#" onclick="downloadReport('technology', 'HPE')">
+                                <i class="fas fa-server"></i> Especialistas HPE
+                            </a>
+                            <a href="#" onclick="downloadReport('cases')">
+                                <i class="fas fa-tasks"></i> Historial de Casos
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resultados -->
+    <section class="results-section">
+        <div class="container">
+            <div id="resultsInfo" class="results-info"></div>
+            <div id="engineersGrid" class="engineers-grid">
+                <!-- Los ingenieros se cargarán aquí dinámicamente -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Sistema de Casos (Oculto por defecto) -->
+    <section class="cases-section">
+        <div class="container">
+            <!-- Botón para mostrar/ocultar -->
+            <div class="cases-toggle">
+                <button class="toggle-cases-btn" onclick="toggleCasesSection()">
+                    <i class="fas fa-tasks"></i> 
+                    <span id="casesToggleText">Mostrar Sistema de Casos</span>
+                    <i class="fas fa-chevron-down" id="casesToggleIcon"></i>
+                </button>
+            </div>
+
+            <!-- Contenedor oculto por defecto -->
+            <div id="casesContainer" class="cases-container" style="display: none;">
+                <h2><i class="fas fa-tasks"></i> Registro de Casos Resueltos</h2>
+                
+                <div class="case-form">
+                    <div class="form-group">
+                        <label>Ingeniero:</label>
+                        <select id="engineerSelect">
+                            <option value="">Seleccionar ingeniero...</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Número de Caso:</label>
+                        <input type="text" id="caseNumber" placeholder="Ej: CASO-001">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Descripción:</label>
+                        <textarea id="caseDescription" placeholder="Descripción del caso resuelto..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Tecnología utilizada:</label>
+                        <input type="text" id="caseTechnology" placeholder="Ej: Azure, Linux, HPE...">
+                    </div>
+                    
+                    <button class="submit-case" onclick="addCase()">
+                        <i class="fas fa-save"></i> Registrar Caso
+                    </button>
+                </div>
+
+                <div class="cases-history">
+                    <h3>Historial de Casos</h3>
+                    <div class="cases-actions">
+                        <button class="report-btn" onclick="downloadCasesReport()">
+                            <i class="fas fa-file-excel"></i> Reporte Simple
+                        </button>
+                        <button class="report-btn" onclick="downloadAdvancedCasesReport()">
+                            <i class="fas fa-chart-bar"></i> Reporte Avanzado
+                        </button>
+                        <button class="report-btn" onclick="clearAllCases()">
+                            <i class="fas fa-trash"></i> Limpiar Historial
+                        </button>
+                    </div>
+                    <div id="casesList" class="cases-list">
+                        <!-- Los casos se cargarán aquí -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p><i class="fas fa-shield-alt"></i> AsimetrixTech - Mesa de Servicio Interno</p>
+            <p class="footer-sub">Sistema de asignación rápida de casos técnicos</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
