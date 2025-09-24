@@ -95,6 +95,18 @@ const engineers = [
         phone: "",
         onDuty: false,
         casesCount: 0
+    },
+    {
+        id: 9,
+        name: "Luis Marron",
+        title: "Ingeniero",
+        specialties: ["Redes Wifi"],
+        experience: "- años",
+        avatar: "LS",
+        email: "luis.marron@asimetrixtech.com",
+        phone: "",
+        onDuty: false,
+        casesCount: 0
     }
 ];
 
