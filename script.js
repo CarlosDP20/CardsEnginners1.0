@@ -83,6 +83,18 @@ const engineers = [
         phone: "+584120321356",
         onDuty: false,
         casesCount: 0
+    },
+    {
+        id: 8,
+        name: "Soporte Netweaver",
+        title: "",
+        specialties: ["SAP"],
+        experience: "- años",
+        avatar: "SN",
+        email: "soportenetweavercacr@asimetrixtech.com",
+        phone: "",
+        onDuty: false,
+        casesCount: 0
     }
 ];
 
