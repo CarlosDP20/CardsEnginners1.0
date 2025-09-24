@@ -71,6 +71,18 @@ const engineers = [
         phone: "+584127335114",
         onDuty: false,
         casesCount: 0
+    },
+    {
+        id: 7,
+        name: "Gregory Cordoba",
+        title: "Analista Service Desk",
+        specialties: ["Servidores HPE", "Diagnostico"],
+        experience: "- años",
+        avatar: "GC",
+        email: "gregory.cordoba@asimetrixtech.com",
+        phone: "+584120321356",
+        onDuty: false,
+        casesCount: 0
     }
 ];
 
